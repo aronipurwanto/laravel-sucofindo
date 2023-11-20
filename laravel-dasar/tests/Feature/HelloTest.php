@@ -8,13 +8,13 @@ use Tests\TestCase;
 
 class HelloTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    public function testHello()
     {
-        $response = $this->get('/');
+        $number = 10;
+        $result = $number * 2;
+        $compare = $result == 30;
 
-        $response->assertStatus(200);
+        self::assertEquals(20, $result);
+        self::assertFalse($compare);
     }
 }
