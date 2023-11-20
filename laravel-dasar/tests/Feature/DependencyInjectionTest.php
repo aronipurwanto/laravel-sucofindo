@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertNotNull;
+use function PHPUnit\Framework\assertSame;
 
 class DependencyInjectionTest extends TestCase
 {
@@ -21,6 +22,23 @@ class DependencyInjectionTest extends TestCase
         self::assertNotNull($bar);
         assertEquals("foo and bar" , $bar->bar());
         assertEquals($foo, $bar->getFoo());
+        assertSame($foo, $bar->getFoo());
     }
+
+    public function testCreateDependency()
+    {
+        $foo = $this->app->make(Foo::class);
+        $foo2 = $this->app->make(Foo::class);
+        $bar = $this->app->make(Bar::class);
+        $bar2 = $this->app->make(Bar::class);
+
+        assertNotNull($foo);
+        assertNotNull($bar);
+
+        self::assertNotSame($foo, $bar->getFoo());
+        self::assertNotSame($foo, $foo2);
+        self::assertNotSame($bar, $bar2);
+    }
+
 
 }
