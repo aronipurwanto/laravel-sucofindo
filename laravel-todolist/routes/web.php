@@ -33,3 +33,10 @@ Route::controller(\App\Http\Controllers\UserController::class)
         Route::post('/login','doLogin');
         Route::post('/logout','logout');
     });
+
+Route::controller(\App\Http\Controllers\TodolistController::class)
+    ->group(function (){
+        Route::get('/todolist','getTodo');
+        Route::post('/todolist','addTodo');
+        Route::post('/todolist/{id}/delete','removeTodo');
+    });
