@@ -2,9 +2,9 @@
 
 namespace App\Services\Impl;
 
-use App\Services\UserServices;
+use App\Services\UserService;
 
-class UserServiceImpl implements UserServices
+class UserServiceImpl implements UserService
 {
     private $users = [
         "roni" => "rahasia",

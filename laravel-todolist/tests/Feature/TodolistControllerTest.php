@@ -8,13 +8,48 @@ use Tests\TestCase;
 
 class TodolistControllerTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    public function testTodolist()
     {
-        $response = $this->get('/');
+        $this->withSession([
+            'user'=>'ahmadroni',
+            'todolist'=>[
+                [
+                    'id'=>'1',
+                    'todo'=>'todo 1'
+                ]
+            ]
+        ])->get('/todolist')
+            ->assertSeeText('1')
+            ->assertSeeText('todo 1');
+    }
 
-        $response->assertStatus(200);
+    public function testAddTodoFailed(){
+        $this->withSession([
+            'user'=>'ahmadroni',
+        ])->post('/todolist',[
+            'todo'=>''
+        ])->assertSeeText('Todo is required');
+    }
+
+    public function testAddTodoSuccess(){
+        $this->withSession([
+            'user'=>'ahmadroni',
+        ])->post('/todolist',[
+            'todo'=>'Test todo'
+        ])->assertRedirect('/todolist');
+    }
+
+    public function testRemoveTodoSuccess()
+    {
+        $this->withSession([
+            'user'=>'ahmadroni',
+            'todolist'=>[
+                [
+                    'id'=>'1',
+                    'todo'=>'todo 1'
+                ]
+            ]
+        ])->post('/todolist/1/delete')
+            ->assertRedirect('/todolist');
     }
 }

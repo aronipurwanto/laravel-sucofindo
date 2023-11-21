@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\UserServices;
+use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
-    private UserServices $userServices;
+    private UserService $userServices;
 
     /**
-     * @param UserServices $userServices
+     * @param UserService $userServices
      */
-    public function __construct(UserServices $userServices)
+    public function __construct(UserService $userServices)
     {
         $this->userServices = $userServices;
     }

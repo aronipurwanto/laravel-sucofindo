@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-interface UserServices
+interface UserService
 {
     public function login(string $username, string $password) : bool;
 }
