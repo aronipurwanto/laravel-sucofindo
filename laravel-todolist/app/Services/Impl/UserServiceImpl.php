@@ -16,6 +16,10 @@ class UserServiceImpl implements UserServices
             return false;
         }
 
+        if(empty($username) || empty($password)){
+            return false;
+        }
+
         if(!$this->users[$username]){
             return false;
         }
