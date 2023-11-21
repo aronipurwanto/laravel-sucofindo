@@ -22,7 +22,7 @@ class UserServiceImpl implements UserServices
             return false;
         }
 
-        if(!$this->users[$username]){
+        if(!isset($this->users[$username])){
             return false;
         }
 
