@@ -32,12 +32,13 @@ Route::post('/login',[\App\Http\Controllers\UserController::class,'logout']);
 
 Route::controller(\App\Http\Controllers\UserController::class)
     ->group(function (){
-        Route::get('/login','login');
-        Route::post('/login','doLogin');
-        Route::post('/logout','logout');
+        Route::get('/login','login')->middleware([\App\Http\Middleware\GuestMiddleware::class]);
+        Route::post('/login','doLogin')->middleware([\App\Http\Middleware\GuestMiddleware::class]);
+        Route::post('/logout','logout')->middleware([\App\Http\Middleware\MemberMiddleware::class]);
     });
 
 Route::controller(\App\Http\Controllers\TodolistController::class)
+    ->middleware([\App\Http\Middleware\MemberMiddleware::class])
     ->group(function (){
         Route::get('/todolist','getTodo');
         Route::post('/todolist','addTodo');
