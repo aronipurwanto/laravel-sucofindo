@@ -7,7 +7,9 @@ use App\Services\UserServices;
 class UserServiceImpl implements UserServices
 {
     private $users = [
-        "nana" => "anonimous"
+        "roni" => "rahasia",
+        "heri"=>"rahasia",
+        "nana"=>"anonim"
     ];
 
     public function login(string $username, string $password): bool
@@ -27,6 +29,8 @@ class UserServiceImpl implements UserServices
         $correctPassword = $this->users[$username];
         if($correctPassword == $password){
             return true;
+        }else {
+            return false;
         }
     }
 }
