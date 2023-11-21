@@ -25,7 +25,8 @@ class TodolistController extends Controller
 
         return response()
             ->view('todolist.todolist',[
-                'todolist' => $todolist
+                'todolist' => $todolist,
+                'title' => 'Todolist'
             ]);
     }
 
@@ -43,13 +44,13 @@ class TodolistController extends Controller
         }
 
         $this->todolistService->saveTodo(uniqid(), $todo);
-        return redirect()->action(TodolistController::class,'getTodo');
+        return redirect()->action([TodolistController::class,'getTodo']);
     }
 
     public function removeTodo(Request $request, string $todoId) : RedirectResponse
     {
         $this->todolistService->removeTodo($todoId);
-        return redirect()->action(TodolistController::class,'getTodo');
+        return redirect()->action([TodolistController::class,'getTodo']);
     }
 
 
