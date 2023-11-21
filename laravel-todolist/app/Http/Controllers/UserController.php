@@ -31,7 +31,7 @@ class UserController extends Controller
         $username = $request->input('user');
         $password = $request->input('password');
 
-        if(!isset($username) || !isset($password)){
+        if(empty($username) || empty($password)){
             return response()
                 ->view('user.login',[
                     'title'=>'Login Page',
