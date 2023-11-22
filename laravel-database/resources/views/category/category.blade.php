@@ -26,7 +26,7 @@
     </div>
     <div class="row align-items-center g-lg-5 py-5">
         <div class="col-lg-7 text-center text-lg-start">
-            <h1 class="display-4 fw-bold lh-1 mb-3">Todolist</h1>
+            <h1 class="display-4 fw-bold lh-1 mb-3">Category</h1>
         </div>
         <div class="col-md-10 mx-auto col-lg-5">
             <form class="p-4 p-md-5 border rounded-3 bg-light" method="post" action="/category">
@@ -58,13 +58,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($categories as $item)
+                @foreach($data as $item)
                     <tr>
                         <th scope="row">{{$item['id']}}</th>
                         <td>{{$item['name']}}</td>
                         <td>{{$item['description']}}</td>
                         <td>
-                            <form action="/todolist/{{$item['id']}}/delete" method="post">
+                            <form action="/category/{{$item['id']}}/delete" method="post">
                                 @csrf
                                 <button class="w-100 btn btn-lg btn-danger" type="submit">Remove</button>
                             </form>

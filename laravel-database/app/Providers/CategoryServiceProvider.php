@@ -2,10 +2,24 @@
 
 namespace App\Providers;
 
+use App\Services\CategoryService;
+use App\Services\Impl\CategoryServiceImpl;
+use App\Services\Impl\TodolistServiceDbImpl;
+use App\Services\Impl\TodolistServiceImpl;
+use App\Services\TodolistService;
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class CategoryServiceProvider extends ServiceProvider
+class CategoryServiceProvider extends ServiceProvider implements DeferrableProvider
 {
+    public array $singletons = [
+        CategoryService::class => CategoryServiceImpl::class
+    ];
+
+    public function provides() : array
+    {
+        return [CategoryService::class];
+    }
     /**
      * Register services.
      */
