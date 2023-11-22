@@ -23,7 +23,8 @@ class TodolistServiceDbImpl implements TodolistService
 
     public function removeTodo($todoId): void
     {
-        $todo = Todolist::query()->where('id','=', $todoId);
+        //$todo = Todolist::query()->where('id','=', $todoId);
+        $todo = Todolist::query()->find($todoId);
         $todo->delete();
     }
 }

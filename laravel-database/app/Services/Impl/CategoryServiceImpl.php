@@ -24,7 +24,8 @@ class CategoryServiceImpl implements CategoryService
 
     public function removeCategory($id): void
     {
-        $category = Category::query()->where("id","=", $id);
+        //$category = Category::query()->where("id","=", $id);
+        $category = Category::query()->find( $id);
         $category->delete();
     }
 }

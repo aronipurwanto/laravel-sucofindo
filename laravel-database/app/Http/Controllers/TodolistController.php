@@ -9,19 +9,19 @@ use Illuminate\Http\Response;
 
 class TodolistController extends Controller
 {
-    private TodolistService $todolistService;
+    private TodolistService $service;
 
     /**
      * @param TodolistService $todolistService
      */
     public function __construct(TodolistService $todolistService)
     {
-        $this->todolistService = $todolistService;
+        $this->service = $todolistService;
     }
 
     public function getTodo(Request $request) : Response
     {
-        $todolist = $this->todolistService->getTodolist();
+        $todolist = $this->service->getTodolist();
 
         return response()
             ->view('todolist.todolist',[
@@ -34,7 +34,7 @@ class TodolistController extends Controller
     {
         $todo = $request->input('todo');
         if(empty($todo)){
-            $todolist = $this->todolistService->getTodolist();
+            $todolist = $this->service->getTodolist();
 
             return response()->view('todolist.todolist',[
                 'title' => 'Todolist',
@@ -43,15 +43,13 @@ class TodolistController extends Controller
             ]);
         }
 
-        $this->todolistService->saveTodo(uniqid(), $todo);
+        $this->service->saveTodo(uniqid(), $todo);
         return redirect()->action([TodolistController::class,'getTodo']);
     }
 
     public function removeTodo(Request $request, string $todoId) : RedirectResponse
     {
-        $this->todolistService->removeTodo($todoId);
+        $this->service->removeTodo($todoId);
         return redirect()->action([TodolistController::class,'getTodo']);
     }
-
-
 }
