@@ -19,5 +19,23 @@ class CategorySeeder extends Seeder
         $category->name = "Food";
         $category->description = "Food Category";
         $category->save();
+
+        $category = new Category();
+        $category->id = "DRINK";
+        $category->name = "Drink";
+        $category->description = "Drink Category";
+        $category->save();
+
+        $category = new Category();
+        $category->id = "ELECTRONIK";
+        $category->name = "Elektronik";
+        $category->description = "Elektronik Category";
+        $category->save();
+
+        $category = new Category();
+        $category->id = "SMARTPHONE";
+        $category->name = "Smart Phone";
+        $category->description = "Smart Phone Category";
+        $category->save();
     }
 }
