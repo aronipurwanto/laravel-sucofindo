@@ -15,7 +15,7 @@ class CategoryTest extends TestCase
     public function testInsertMany()
     {
         $categories = [];
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             $categories[] = [
                 "id" => uniqid(),
                 "name" => "Category Name ${i}",
@@ -27,7 +27,7 @@ class CategoryTest extends TestCase
         self::assertTrue($result);
 
         $total = Category::query()->count();
-        assertEquals(10, $total);
+        assertEquals(20, $total);
     }
 
     public function testFind()
